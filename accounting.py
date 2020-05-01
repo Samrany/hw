@@ -1,13 +1,6 @@
-		
-# importfile
-
-#for each line, separate by "|"
-# for each line
-	# define variables: index 1 = name, index #2 = melons, index 3 = paid
-	# customer_expected = melons * melon_cost
-	#if customer expected doesn't equal paid...
-
 def customer_underpaid_report(file_name, melon_cost):
+	"""Creates a report for customers who didn't pay the amount they actually owe"""
+
 	the_file = open(file_name)
 	for line in the_file:
 		line = line.rstrip()
@@ -16,14 +9,15 @@ def customer_underpaid_report(file_name, melon_cost):
 		
 		customer_name = content[1]
 		num_melons = int(content[2])
-		amount_paid = content[3]
+		amount_paid = float(content[3])
 		customer_expected = num_melons*melon_cost
-		
+	
 		if customer_expected != amount_paid:
 			print("{} paid ${}, expected ${}".format(customer_name,amount_paid,customer_expected))
 
-   
 
+	the_file.close()
+	
 customer_underpaid_report("customer-orders.txt",1)
 
 
